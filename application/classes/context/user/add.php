@@ -7,8 +7,9 @@ class Context_User_Add
 
 	protected $_group_gateway;
 	protected $_user;
+	protected $_select;
 
-	public function __construct(array $data, Model_User $user, $user_gateway, $group_gateway)
+	public function __construct(array $data, Model_User $user, $user_gateway, $group_gateway, $select)
 	{
 		$groups = arr::get($data, 'groups', array());
 		unset($data['groups']);
@@ -20,6 +21,8 @@ class Context_User_Add
 		$this->_user = new UnsavedUser($user, $data, $groups, $user_gateway, $group_gateway);
 
 		$this->_group_gateway = $group_gateway;
+		
+		$this->_select = $select;
 	}
 
 	/*
